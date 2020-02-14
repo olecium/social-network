@@ -24,8 +24,8 @@ const UserInfo = (props) => {
                 </div>
             </section>
 
-            <AddPost />
-            <MyPosts posts={props.posts}/>
+            <AddPost message={props.state.newPostText} />
+            <MyPosts posts={props.state.posts}/>
         </section>
     );
 }

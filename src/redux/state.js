@@ -3,6 +3,9 @@ import friendpic2 from "../images/friendpic2.jpg";
 import friendpic3 from "../images/friendpic3.jpg";
 import photo from "../images/photo.png";
 
+let renderLayout = () => {
+    console.log('state');
+}
 let state = {
     messagesPage: {
         messages: [
@@ -26,7 +29,8 @@ let state = {
                     likes: 235
                 },
                 {id: 2, photo: `${photo}`, text: "What about an interview?", likes: 233}
-            ]
+            ],
+            newPostText: "Hello"
     },
     sidebar: {
         nav: [
@@ -44,3 +48,24 @@ let state = {
     }
 }
 export default state;
+
+export const addPost = (message) => {
+    let newPost = {
+        id: 3,
+        photo: `${photo}`,
+        text: message,
+        likes: 0
+    }
+    state.profilePage.posts.push(newPost);
+    renderLayout(state);
+}
+
+export const updatePostMessage = (newText) => {
+    let message = e.target.value;
+    addPost(message);
+}
+
+export const subscriber = (observer) => {
+    renderLayout = observer;
+}
+

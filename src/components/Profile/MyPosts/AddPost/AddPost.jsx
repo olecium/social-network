@@ -1,14 +1,16 @@
 import React from "react";
 import css from "./AddPost.module.scss";
 
-const AddPost = () => {
+
+
+const AddPost = (props) => {
     return(
         <section className={css.add_post}>
             <h3>Add post</h3>
             <p>
-                <textarea name="usernews" id="usernews" cols="70" rows="3"></textarea>
+                <textarea onChange={props.updatePostMessage} value={props.message} name="usernews" id="usernews" cols="70" rows="3"></textarea>
             </p>
-            <button type="submit">Send</button>
+            <button type="submit" onClick={props.addPost}>Send</button>
         </section>
     );
 }
