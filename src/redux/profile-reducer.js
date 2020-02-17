@@ -3,7 +3,20 @@ import photo from "../images/photo.png";
 const UPDATE_POST_MESSAGE = 'UPDATE_POST_MESSAGE';
 const ADD_POST = 'ADD_POST';
 
-const profileReducer = (state, action) => {
+let initialState = {
+    posts: [
+        {
+            id: 1,
+            photo: `${photo}`,
+            text: "It was a long day, but I'm happy to announce that I've got a job!",
+            likes: 235
+        },
+        {id: 2, photo: `${photo}`, text: "What about an interview?", likes: 233}
+    ],
+    newPostText: "Hello"
+};
+
+const profileReducer = (state = initialState, action) => {
 
     switch(action.type){
         case ADD_POST:             
