@@ -10,11 +10,7 @@ function App(props) {
       <BrowserRouter>
         <div className="container">
              <Header/>
-             <Main
-                 stateMessages={props.state.messagesPage}
-                 stateProfile={props.state.profilePage} dispatch={props.dispatch}
-                 stateSidebar={props.state.sidebar}
-             />
+             <Main store={props.store} />
              <Footer/>
         </div>
       </BrowserRouter>

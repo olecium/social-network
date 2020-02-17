@@ -2,10 +2,10 @@ import React from "react";
 import photoWebp from "../../../images/photo.webp";
 import photo from "../../../images/photo.png";
 import MyPosts from "../MyPosts/MyPosts";
-import AddPost from "../MyPosts/AddPost/AddPost";
-import css from "./UserInfo.module.scss";
+import AddPost from "./../AddPost/AddPost";
+import css from "./Profile.module.scss";
 
-const UserInfo = (props) => {
+const Profile = (props) => {
     return(
         <section className="userInfo">
             <h1>Profile</h1>
@@ -24,9 +24,9 @@ const UserInfo = (props) => {
                 </div>
             </section>
 
-            <AddPost newPostText={props.state.newPostText} dispatch={props.dispatch} />
-            <MyPosts posts={props.state.posts}/>
+            <AddPost newPostText={props.newPostText} dispatch={props.dispatch} onPostAdd={props.onPostAdd} onPostChange={props.onPostChange} />
+            <MyPosts posts={props.posts}/>
         </section>
     );
 }
-export default UserInfo;
+export default Profile;

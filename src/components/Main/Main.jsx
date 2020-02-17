@@ -5,14 +5,15 @@ import css from "./Main.module.scss";
 import Friends from "./Sidenav/Friends/Friends";
 
 function Main(props) {
+    let state = props.store.getState();
     return(
         <div className={css.app_wrapper}>
             <main className={css.app_main}>
                 <section className={css.app_sidebar}>
-                    <Sidenav navList={props.stateSidebar.nav}/>
-                    <Friends friendList={props.stateSidebar.friendList} />
+                    <Sidenav navList={state.sidebar.nav} />
+                    <Friends friendList={state.sidebar.friendList} />
                 </section>
-                <Content stateMessages={props.stateMessages} stateProfile={props.stateProfile} dispatch={props.dispatch}/>
+                <Content store={props.store} />
             </main>
         </div>
     );

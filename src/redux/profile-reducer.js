@@ -3,6 +3,7 @@ import photo from "../images/photo.png";
 const UPDATE_POST_MESSAGE = 'UPDATE_POST_MESSAGE';
 const ADD_POST = 'ADD_POST';
 
+// INITIAL STATE
 let initialState = {
     posts: [
         {
@@ -16,9 +17,11 @@ let initialState = {
     newPostText: "Hello"
 };
 
+// REDUCER
 const profileReducer = (state = initialState, action) => {
 
     switch(action.type){
+
         case ADD_POST:             
             let newPost = {
                 id: 3,
@@ -37,11 +40,11 @@ const profileReducer = (state = initialState, action) => {
         default: 
             return state;
     }
-
 }
 
 export default profileReducer;
 
+// ACTION CREATORS
 export const addPost_actionCreator = () => ({type: ADD_POST});
 
 export const addNewPostText_actionCreator = (message) => {
