@@ -24,7 +24,7 @@ const UserInfo = (props) => {
                 </div>
             </section>
 
-            <AddPost message={props.state.newPostText} />
+            <AddPost newPostText={props.state.newPostText} dispatch={props.dispatch} />
             <MyPosts posts={props.state.posts}/>
         </section>
     );

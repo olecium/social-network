@@ -12,7 +12,7 @@ function Main(props) {
                     <Sidenav navList={props.stateSidebar.nav}/>
                     <Friends friendList={props.stateSidebar.friendList} />
                 </section>
-                <Content stateMessages={props.stateMessages} stateProfile={props.stateProfile}/>
+                <Content stateMessages={props.stateMessages} stateProfile={props.stateProfile} dispatch={props.dispatch}/>
             </main>
         </div>
     );

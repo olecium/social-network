@@ -11,9 +11,9 @@ function App(props) {
         <div className="container">
              <Header/>
              <Main
-                 stateMessages={props.appstate.messagesPage}
-                 stateProfile={props.appstate.profilePage}
-                 stateSidebar={props.appstate.sidebar}
+                 stateMessages={props.state.messagesPage}
+                 stateProfile={props.state.profilePage} dispatch={props.dispatch}
+                 stateSidebar={props.state.sidebar}
              />
              <Footer/>
         </div>
