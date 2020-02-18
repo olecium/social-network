@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/redux-store';
+import StoreContext from "./StoreContext";
 
 const renderLayout = (state) => {
-    ReactDOM.render(<App state={state} store={store} dispatch={store.dispatch.bind(store)} />, document.getElementById('root'));
+    ReactDOM.render(
+        <StoreContext.Provider value={store}>
+            <App />
+        </StoreContext.Provider>, document.getElementById('root'));
 }
 renderLayout(store.getState());
 

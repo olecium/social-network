@@ -9,9 +9,9 @@ function App(props) {
   return (
       <BrowserRouter>
         <div className="container">
-             <Header/>
-             <Main store={props.store} />
-             <Footer/>
+          <Header/>
+          <Main/>
+          <Footer/>
         </div>
       </BrowserRouter>
   );
