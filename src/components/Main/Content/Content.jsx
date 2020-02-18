@@ -6,12 +6,14 @@ import Music from "../../Music/Music";
 import Settings from "../../Settings/Settings";
 import css from "./Content.module.scss";
 import MessagesContainer from "../../Messages/MessagesContainer";
+import UsersContainer from "../../Users/UsersContainer";
 
 function Content(props) {
     return(
         <section className={css.app_content}>
             <Route path="/profile" render={() => <ProfileContainer />} />
             <Route path="/messages" render={() => <MessagesContainer />} />
+            <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/news" component={News} />
             <Route path="/music" component={Music} />
             <Route path="/settings" component={Settings} />
