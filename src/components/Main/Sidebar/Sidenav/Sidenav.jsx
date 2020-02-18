@@ -5,7 +5,7 @@ import css from './Sidenav.module.scss';
 function Sidenav (props) {
 
     let navLinks = props.navList.map( (el) => {
-        return(<li><NavLink className={css.app_sidenav__link} activeClassName={css.app_sidenav__link_active} to={el.link}>{el.title}</NavLink></li>);
+        return(<li key={el.id}><NavLink className={css.app_sidenav__link} activeClassName={css.app_sidenav__link_active} to={el.link} key={el.id}>{el.title}</NavLink></li>);
     });
     return (
         <nav className={css.app_sidenav}>

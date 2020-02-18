@@ -4,19 +4,18 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/redux-store';
-import StoreContext from "./StoreContext";
+import {Provider} from "react-redux";
 
-const renderLayout = (state) => {
+const renderLayout = () => {
     ReactDOM.render(
-        <StoreContext.Provider value={store}>
+        <Provider store={store}>
             <App />
-        </StoreContext.Provider>, document.getElementById('root'));
+        </Provider>, document.getElementById('root'));
 }
-renderLayout(store.getState());
+renderLayout();
 
 store.subscribe(() => { 
-    let state = store.getState();
-    renderLayout(state); 
+    renderLayout(); 
 });
 
 // If you want your app to work offline and load faster, you can change

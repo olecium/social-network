@@ -5,7 +5,7 @@ import css from "./MyPosts.module.scss"
 function MyPosts(props) {
 
     let posts = props.posts.map( (p) => {
-        return(<Post photo={p.photo} text={p.text} likes={p.likes} />);
+        return(<Post key={p.id} photo={p.photo} text={p.text} likes={p.likes} />);
     } );
 
     return(

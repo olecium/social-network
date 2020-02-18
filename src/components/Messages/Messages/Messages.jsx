@@ -1,7 +1,5 @@
 import React from "react";
 import css from './Messages.module.scss';
-import DialogItem from "./../DialogItem/DialogItem";
-import MessageTemplate from "./../MessageTemplate/MessageTemplate";
 
 const Messages = (props) => {
 
