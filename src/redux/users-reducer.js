@@ -2,6 +2,7 @@ import usericon from "../images/usericon.png";
 // INITIAL STATE
 let initialState = {
     users: [
+    /*
         {
             id: 1,
             photo: `${usericon}`,
@@ -122,12 +123,17 @@ let initialState = {
                 country: "Nothern Ireland",
                 city: "Belfast"
             }
-        }
-    ]
+        }*/
+    ],
+    pageSize: 20,
+    totalUsersCount: 50,    
+    currentPage: 1
 };
 const LOAD_USERS = 'LOAD_USERS';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 // REDUCER
 const usersReducer = (state = initialState, action) => {
@@ -158,7 +164,19 @@ const usersReducer = (state = initialState, action) => {
         case LOAD_USERS: {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            }
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return {
+                ...state,
+                totalUsersCount: action.number
+            }
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.currentPage
             }
         }
 
@@ -173,3 +191,5 @@ export default usersReducer;
 export const loadUsers_AC = (users) => ({type: LOAD_USERS, users});
 export const follow_AC = (userID) => ({type: FOLLOW, userID});
 export const unfollow_AC = (userID) => ({type: UNFOLLOW, userID});
+export const setPage_AC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount_AC = (number) => ({type: SET_TOTAL_USERS_COUNT, number});

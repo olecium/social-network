@@ -81,20 +81,13 @@ a {
   }
 }
 
-.button{
-  font-family: $main-font;
-  font-size: 16px;
-  line-height: 18px;
-  color: $c-white;
-  font-weight: 400;
-  text-transform: uppercase;
+.btn{
+  background-color: #0f698f;
+  color: #fff;
+  font-size: 13px;
+  padding: 10px 20px;
   border: 0 none;
-  background-color: #68b738;
-  text-decoration: none;
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 13px 0;
+  border-radius: 10px;
   cursor: pointer;
 }
 
