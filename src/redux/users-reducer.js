@@ -195,9 +195,9 @@ const usersReducer = (state = initialState, action) => {
 export default usersReducer;
 
 // ACTION CREATORS
-export const loadUsers_AC = (users) => ({type: LOAD_USERS, users});
-export const follow_AC = (userID) => ({type: FOLLOW, userID});
-export const unfollow_AC = (userID) => ({type: UNFOLLOW, userID});
-export const setPage_AC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setTotalUsersCount_AC = (number) => ({type: SET_TOTAL_USERS_COUNT, number});
-export const setFetching_AC = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+export const loadUsers = (users) => ({type: LOAD_USERS, users});
+export const followUser = (userID) => ({type: FOLLOW, userID});
+export const unfollowUser = (userID) => ({type: UNFOLLOW, userID});
+export const setPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (number) => ({type: SET_TOTAL_USERS_COUNT, number});
+export const setFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
