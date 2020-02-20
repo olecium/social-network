@@ -12,9 +12,14 @@ let initialState = {
             text: "It was a long day, but I'm happy to announce that I've got a job!",
             likes: 235
         },
-        {id: 2, photo: `${photo}`, text: "What about an interview?", likes: 233}
+        {
+            id: 2, 
+            photo: `${photo}`, 
+            text: "What about an interview?", 
+            likes: 233
+        }
     ],
-    newPostText: "Hello"
+    newPostText: ""
 };
 
 // REDUCER
