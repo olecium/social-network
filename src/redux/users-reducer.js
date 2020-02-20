@@ -1,4 +1,3 @@
-import usericon from "../images/usericon.png";
 // INITIAL STATE
 let initialState = {
     users: [
@@ -127,13 +126,15 @@ let initialState = {
     ],
     pageSize: 20,
     totalUsersCount: 50,    
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 };
 const LOAD_USERS = 'LOAD_USERS';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
 // REDUCER
 const usersReducer = (state = initialState, action) => {
@@ -179,6 +180,12 @@ const usersReducer = (state = initialState, action) => {
                 currentPage: action.currentPage
             }
         }
+        case TOGGLE_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        }
 
         default: 
             return state;
@@ -193,3 +200,4 @@ export const follow_AC = (userID) => ({type: FOLLOW, userID});
 export const unfollow_AC = (userID) => ({type: UNFOLLOW, userID});
 export const setPage_AC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount_AC = (number) => ({type: SET_TOTAL_USERS_COUNT, number});
+export const setFetching_AC = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
