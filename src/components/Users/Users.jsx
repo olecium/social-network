@@ -31,19 +31,23 @@ const Users = (props) => {
                                 <p><img className={css.user_image} src={ u.photos.small != null ? u.photos.small :usericon} alt=""/></p>
                                 {
                                     u.followed
-                                    ? <button className={`${css.user_follow__button} ${css.user_follow__button_active}`} onClick={ () => { 
+                                    ? <button disabled={props.followingInProgress.some(id => id === u.id)} className={`${css.user_follow__button} ${css.user_follow__button_active}`} onClick={ () => { 
+                                        props.setFollowProgress(true, u.id);
                                         usersAPI.unfollowUser(u.id).then(data => { 
                                             if (data.resultCode === 0) {
                                                 props.unfollowUser(u.id);
                                             }
+                                            props.setFollowProgress(false, u.id);
                                         });
                                         
                                     } }>Unfollow</button>
-                                    : <button className={css.user_follow__button}  onClick={ () => { 
+                                    : <button disabled={props.followingInProgress.some(id => id === u.id)} className={css.user_follow__button}  onClick={ () => { 
+                                        props.setFollowProgress(true, u.id);
                                         usersAPI.followUser(u.id).then(data => { 
                                             if (data.resultCode === 0) {
                                                 props.followUser(u.id);
                                             }
+                                            props.setFollowProgress(false, u.id);
                                         });
                                     } }>Follow</button>
                                 }
