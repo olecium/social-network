@@ -1,5 +1,4 @@
 import React from "react";
-import photoWebp from "../../../images/photo.webp";
 import photo from "./../../../images/photo.png";
 import css from "./ProfileInfo.module.scss";
 import Preloader from "../../common/Preloader/Preloader";
@@ -19,7 +18,7 @@ const ProfileInfo = (props) => {
                     <img className={css.profile__picture_img} src={picture} alt="Profile pic ture"/>
                 </span>
                 <div className={css.profile__info}>
-                    <h2>{/*console.log(props)*/}{ props.profile.fullName}</h2>
+                    <h2>{ props.profile.fullName}</h2>
                     <p>Date of birth: 2 Jan</p>
                     <p>City: Minsk</p>
                     <p>Interests: {props.aboutMe}</p>

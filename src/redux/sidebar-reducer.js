@@ -1,9 +1,9 @@
 let initialState =  {
     nav: [
         {id: 1, title: "Messages", link: "/messages"},
-        {id: 1, title: "Users", link: "/users"},
-        {id: 2, title: "News", link: "/news"},
-        {id: 3, title: "Music", link: "/music"}
+        {id: 2, title: "Users", link: "/users"},
+        {id: 3, title: "News", link: "/news"},
+        {id: 4, title: "Music", link: "/music"}
     ],
     friendList: [
         {id: 1, name: 'Vasya', surname: 'Pupkin'},
