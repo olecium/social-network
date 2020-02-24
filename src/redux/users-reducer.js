@@ -1,3 +1,5 @@
+import { usersAPI } from "./../api/api";
+
 // INITIAL STATE
 let initialState = {
     users: [
@@ -212,3 +214,41 @@ export const setPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (number) => ({type: SET_TOTAL_USERS_COUNT, number});
 export const setFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const setFollowProgress = (isFetching, userId) => ({type: FOLLOWING_IN_PROGRESS, isFetching, userId});
+
+
+// THUNK FUNCTIONS
+export const getUsers = (currentPage, pageSize) => {
+    return((dispatch) => {
+        dispatch(setFetching(true));        
+        dispatch(setPage(currentPage));
+        usersAPI.getUsers(currentPage, pageSize).then(data => { 
+            dispatch(loadUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));            
+            dispatch(setFetching(false));
+        });
+    })
+}
+
+export const follow = (userId) => {
+    return((dispatch) => {
+        dispatch(setFollowProgress(true, userId));
+        usersAPI.followUser(userId).then(data => { 
+            if (data.resultCode === 0) {
+                dispatch(followUser(userId));
+            }
+            dispatch(setFollowProgress(false, userId));
+        });
+    })
+}
+
+export const unfollow = (userId) => {
+    return((dispatch) => {
+        dispatch(setFollowProgress(true, userId));
+        usersAPI.unfollowUser(userId).then(data => { 
+            if (data.resultCode === 0) {
+                dispatch(unfollowUser(userId));
+            }
+            dispatch(setFollowProgress(false, userId));
+        });
+    })
+}

@@ -2,7 +2,6 @@ import React from "react";
 import css from './Users.module.scss';
 import usericon from "./../../images/usericon.png";
 import {NavLink} from "react-router-dom";
-import { usersAPI } from "../../api/api";
 
 const Users = (props) => {
     
@@ -31,25 +30,12 @@ const Users = (props) => {
                                 <p><img className={css.user_image} src={ u.photos.small != null ? u.photos.small :usericon} alt=""/></p>
                                 {
                                     u.followed
-                                    ? <button disabled={props.followingInProgress.some(id => id === u.id)} className={`${css.user_follow__button} ${css.user_follow__button_active}`} onClick={ () => { 
-                                        props.setFollowProgress(true, u.id);
-                                        usersAPI.unfollowUser(u.id).then(data => { 
-                                            if (data.resultCode === 0) {
-                                                props.unfollowUser(u.id);
-                                            }
-                                            props.setFollowProgress(false, u.id);
-                                        });
-                                        
-                                    } }>Unfollow</button>
-                                    : <button disabled={props.followingInProgress.some(id => id === u.id)} className={css.user_follow__button}  onClick={ () => { 
-                                        props.setFollowProgress(true, u.id);
-                                        usersAPI.followUser(u.id).then(data => { 
-                                            if (data.resultCode === 0) {
-                                                props.followUser(u.id);
-                                            }
-                                            props.setFollowProgress(false, u.id);
-                                        });
-                                    } }>Follow</button>
+                                    ? <button disabled={props.followingInProgress.some(id => id === u.id)} 
+                                              className={`${css.user_follow__button} ${css.user_follow__button_active}`} 
+                                              onClick={ () => { props.unfollow(u.id); } }>Unfollow</button>
+                                    : <button disabled={props.followingInProgress.some(id => id === u.id)} 
+                                              className={css.user_follow__button}  
+                                              onClick={ () => { props.follow(u.id); } }>Follow</button>
                                 }
                             </div>
                             <div className={css.user_info}>
