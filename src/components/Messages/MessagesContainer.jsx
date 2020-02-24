@@ -5,6 +5,7 @@ import Messages from "./Messages/Messages";
 import {addMessage_actionCreator, addNewMessageText_actionCreator} from "./../../redux/messages-reducer";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
     return {
@@ -14,8 +15,7 @@ let mapStateToProps = (state) => {
         }),
         messageElements: state.messagesPage.messages.map( (m) => {
             return(<MessageTemplate key={m.id} id={m.id} date={m.date} from={m.from} message={m.message} />);
-        } ),
-        isAuth: state.auth.isAuth
+        })
     }
 }
 
@@ -29,7 +29,9 @@ let mapDispatchToProps = (dispatch) => {
         }
     }
 }
-let AuthRedirectComponent = withAuthRedirect(Messages);
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-export default MessagesContainer;
+
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, mapDispatchToProps)
+)(Messages);
 
