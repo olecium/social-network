@@ -9,7 +9,6 @@ const ProfileInfo = (props) => {
     }
     let picture = props.profile.photos.small ? props.profile.photos.small : photo;
 
-    console.log(picture);
     return (
         <>
             <h1>Profile</h1>

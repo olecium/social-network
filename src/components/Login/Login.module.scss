@@ -1,0 +1,21 @@
+@import "./../../scss/variables";
+@import "./../../scss/blocks/general";
+
+.login{
+}
+.login_items{
+    list-style: none;
+}
+.login_item{
+    margin: 0 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+.login_label{
+    padding: 5px 0;
+}
+.login_input{
+    width: 200px;
+    padding: 5px 0;
+    border: 1px solid #cccccc;
+}

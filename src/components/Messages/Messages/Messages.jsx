@@ -1,5 +1,6 @@
 import React from "react";
 import css from './Messages.module.scss';
+import { Redirect } from "react-router-dom";
 
 const Messages = (props) => {
 
@@ -12,6 +13,8 @@ const Messages = (props) => {
         let message = e.target.value;
         props.addMessage(message);
     }
+
+    if(!props.isAuth) { return <Redirect to="/login" />}
 
     return(
         <section className={css.messages_wrapper}>

@@ -1,4 +1,5 @@
 import photo from "../images/photo.png";
+import { usersAPI } from "./../api/api";
 
 const UPDATE_POST_MESSAGE = 'UPDATE_POST_MESSAGE';
 const ADD_POST = 'ADD_POST';
@@ -70,4 +71,13 @@ export const addNewPostText = (message) => {
     return action;
 }
 
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
+// THUNK
+export const setProfile = (userId) => {
+    return( (dispatch) => {      
+        usersAPI.getProfile(userId).then(data => { 
+            dispatch(setUserProfile(data));
+        });
+    });
+}
