@@ -1,9 +1,10 @@
 import photo from "../images/photo.png";
-import { usersAPI } from "./../api/api";
+import { profileAPI } from "./../api/api";
 
 const UPDATE_POST_MESSAGE = 'UPDATE_POST_MESSAGE';
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 // INITIAL STATE
 let initialState = {
@@ -22,7 +23,8 @@ let initialState = {
         }
     ],
     newPostText: "",
-    profile: null
+    profile: null,
+    status: ""
 };
 
 // REDUCER
@@ -56,6 +58,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             };
         }
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            };
+        }
         default: 
             return state;
     }
@@ -72,12 +80,31 @@ export const addNewPostText = (message) => {
 }
 
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+export const setStatus = (status) => ({type: SET_STATUS, status});
 
 // THUNK
 export const setProfile = (userId) => {
     return( (dispatch) => {      
-        usersAPI.getProfile(userId).then(data => { 
+        profileAPI.getProfile(userId).then(data => { 
             dispatch(setUserProfile(data));
+        });
+    });
+}
+
+export const getStatus = (userId) => {
+    return( (dispatch) => {      
+        profileAPI.getStatus(userId).then(response => {
+            dispatch(setStatus(response));
+        });
+    });
+}
+
+export const updateStatus = (status) => {
+    return( (dispatch) => {      
+        profileAPI.updateStatus(status).then(response => { 
+            if(response.data.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
         });
     });
 }

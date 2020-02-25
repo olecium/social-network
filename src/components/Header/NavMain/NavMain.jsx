@@ -10,7 +10,7 @@ const NavMain = (props) => {
                     props.isAuth
                     ?   <>
                             <li><NavLink className={css.nav_main__link} to="/settings">Settings</NavLink></li>
-                            <li><span className={css.nav_main__welcome}>Hello, {props.login}</span><NavLink className={css.nav_main__link} activeClassName={css.nav_main__link_active} to="/profile">Profile</NavLink></li>
+                            <li><span className={css.nav_main__welcome}>Hello, {props.userId} {props.login}</span><NavLink className={css.nav_main__link} activeClassName={css.nav_main__link_active} to="/profile">Profile</NavLink></li>
                         </>
                     :   <li><NavLink className={css.nav_main__link} to="/login">Login</NavLink></li>
                 }

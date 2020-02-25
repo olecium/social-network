@@ -1,5 +1,5 @@
 import React from "react";
-import {Route} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import ProfileContainer from "../../Profile/ProfileContainer";
 import News from "../../News/News";
 import Music from "../../Music/Music";
@@ -9,10 +9,11 @@ import css from "./Content.module.scss";
 import MessagesContainer from "../../Messages/MessagesContainer";
 import UsersContainer from "../../Users/UsersContainer";
 
-function Content(props) {
+const Content = () => {
     return(
         <section className={css.app_content}>
-            <Route path="/profile/:userId" render={() => <ProfileContainer />} />
+            <Route exact path='/' render={() => <Redirect to={"/profile"}/>}/>
+            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
             <Route path="/messages" render={() => <MessagesContainer />} />
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/news" component={News} />

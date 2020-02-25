@@ -7,9 +7,5 @@ let mapStateToProps = (state) => {
         friendList: state.sidebar.friendList
     };
 }
-
-let mapDispatchToProps = (dispatch) => {
-    return {};
-}
-const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+const SidebarContainer = connect(mapStateToProps, {})(Sidebar);
 export default SidebarContainer;

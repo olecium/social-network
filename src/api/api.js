@@ -20,9 +20,18 @@ export const usersAPI = {
     },
     followUser (userId) {    
         return instance.post(`follow/${userId}`).then(response => response.data);
-    },
-    getProfile (userId =  null) {    
+    }
+}
+
+export const profileAPI = {
+    getProfile (userId = null) {    
         return instance.get(`profile/${userId}`).then(response => response.data);
+    },
+    getStatus (userId = null) {    
+        return instance.get(`profile/status/${userId}`).then(response => response.data);
+    },
+    updateStatus (status = null) {    
+        return instance.put(`profile/status`, {status}).then(response => response.data);
     }
 }
 
