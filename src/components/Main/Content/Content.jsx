@@ -8,6 +8,7 @@ import Settings from "../../Settings/Settings";
 import css from "./Content.module.scss";
 import MessagesContainer from "../../Messages/MessagesContainer";
 import UsersContainer from "../../Users/UsersContainer";
+import LoginContainer from "../../Login/LoginContainer";
 
 const Content = () => {
     return(
@@ -19,7 +20,7 @@ const Content = () => {
             <Route path="/news" component={News} />
             <Route path="/music" component={Music} />
             <Route path="/settings" component={Settings} />
-            <Route path="/login" component={Login} />
+            <Route path="/login" component={LoginContainer} />
         </section>
     );
 }
