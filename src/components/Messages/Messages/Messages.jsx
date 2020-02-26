@@ -1,16 +1,14 @@
 import React from "react";
 import css from './Messages.module.scss';
+import MessageForm from "./MessageForm";
+import { reduxForm } from "redux-form";
+
+const MessageReduxForm = reduxForm({form: 'messageForm'})(MessageForm);
 
 const Messages = (props) => {
 
-    const onMessageChange = (e) => {
-        let message = e.target.value;
-        props.addNewMessageText(message);
-    }
-
-    const onMessageSend = (e) => {
-        let message = e.target.value;
-        props.addMessage(message);
+    const onSubmit = (formData) => {
+        props.addMessage(formData.message);
     }
 
     return(
@@ -27,8 +25,7 @@ const Messages = (props) => {
                         {props.messageElements}
                     </div>
                     <div className={css.add_message}>
-                        <textarea className={css.add_message__box} name="message" onChange={onMessageChange} value={props.newMessageText}></textarea>
-                        <button className={css.add_message__button} onClick={onMessageSend}>Send</button>
+                        <MessageReduxForm onSubmit={onSubmit}/>
                     </div>
                 </div>
             </div>

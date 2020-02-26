@@ -1,7 +1,6 @@
 import photo from "../images/photo.png";
 import { profileAPI } from "./../api/api";
 
-const UPDATE_POST_MESSAGE = 'UPDATE_POST_MESSAGE';
 const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
@@ -22,35 +21,24 @@ let initialState = {
             likes: 233
         }
     ],
-    newPostText: "",
     profile: null,
     status: ""
 };
 
 // REDUCER
-const profileReducer = (state = initialState, action) => {
-
-   
-    switch(action.type){
-        
+const profileReducer = (state = initialState, action) => {   
+    switch(action.type){        
         case ADD_POST: {      
-            let text = state.newPostText;
             return {
                 ...state,
                 newPostText: '',
                 posts: [ ...state.posts, {
                     id: 3,
                     photo: `${photo}`,
-                    text: text,
+                    text: action.text,
                     likes: 0
                 }]
             }; 
-        }
-        case UPDATE_POST_MESSAGE: {
-            return {
-                ...state,
-                newPostText: action.newText
-            };
         }
         case SET_USER_PROFILE: {
             return {
@@ -72,13 +60,8 @@ const profileReducer = (state = initialState, action) => {
 export default profileReducer;
 
 // ACTION CREATORS
-export const addPost = () => ({type: ADD_POST});
 
-export const addNewPostText = (message) => {
-    let action = {type: UPDATE_POST_MESSAGE, newText: message};
-    return action;
-}
-
+export const addPost = (text) => ({type: ADD_POST, text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 

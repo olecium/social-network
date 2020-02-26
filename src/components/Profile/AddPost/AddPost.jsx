@@ -1,24 +1,20 @@
 import React from "react";
 import css from "./AddPost.module.scss";
+import { reduxForm } from "redux-form";
+import AddPostForm from "./AddPostForm";
+
+const AddPostReduxForm = reduxForm({form: 'addPost'})(AddPostForm);
 
 const AddPost = (props) => {
 
-    const addPost = () => {
-        props.onPostAdd();
-    }
-
-    const postChange = (e) => {
-        let message = e.target.value;
-        props.onPostChange(message);
+    const onSubmit = (formData) => {        
+        props.onPostAdd(formData.userpost);
     }
 
     return(
         <section className={css.add_post}>
             <h3>Add post</h3>
-            <p>
-                <textarea onChange={postChange} value={props.newPostText} name="usernews" id="usernews"></textarea>
-            </p>
-            <button type="submit" onClick={addPost}>Send</button>
+            <AddPostReduxForm onSubmit={onSubmit}/>
         </section>
     );
 }
