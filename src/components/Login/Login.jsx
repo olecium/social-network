@@ -1,6 +1,8 @@
 import React from "react";
 import css from "./Login.module.scss";
 import { reduxForm, Field } from "redux-form";
+import { Input } from "../common/FormControls/FormControls";
+import { required } from "../../utils/validators/validators";
 
 let Login = () => {
     const onSubmit = (formData) => {
@@ -20,14 +22,14 @@ let LoginForm = (props) => {
             <ul className={css.login_items}>
                 <li className={css.login_item}>
                     <label className={css.login_label} htmlFor="login">Login</label>
-                    <Field className={css.login_input} name={"login"} component={"input"} />
+                    <Field className={css.login_input} name={"login"} component={Input} validate={[required]} />
                 </li>
                 <li className={css.login_item}>
                     <label className={css.login_label} htmlFor="password">Password</label>
-                    <Field className={css.login_input} name={"password"} component={"input"} />
+                    <Field className={css.login_input} name={"password"} component={Input} validate={[required]} />
                 </li>
                 <li className={css.login_item__checkbox}>
-                    <Field className={css.login_input__checkbox} name={"rememberme"} component={"input"} type={"checkbox"} />
+                    <Field className={css.login_input__checkbox} name={"rememberme"} component={Input} type={"checkbox"} />
                     <label className={css.login_label} htmlFor="rememberme">Remember me</label>
                 </li>
                 <li>
