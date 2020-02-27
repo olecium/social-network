@@ -8,16 +8,19 @@ const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <ul className={css.login_items}>
+                { props.error && 
+                    <li className={css.form_error}>{props.error}</li>
+                }
                 <li className={css.login_item}>
                     <label className={css.login_label} htmlFor="login">Login</label>
                     <Field className={css.login_input} name={"login"} component={Input} validate={[required]} />
                 </li>
                 <li className={css.login_item}>
                     <label className={css.login_label} htmlFor="password">Password</label>
-                    <Field className={css.login_input} name={"password"} component={Input} validate={[required]} />
+                    <Field className={css.login_input} name={"password"} type={"password"} component={Input} validate={[required]} />
                 </li>
                 <li className={css.login_item__checkbox}>
-                    <Field className={css.login_input__checkbox} name={"rememberMe"} component={Input} type={"checkbox"} />
+                    <Field className={css.login_input__checkbox} name={"rememberMe"} id={"rememberMe"} component={Input} type={"checkbox"} />
                     <label className={css.login_label} htmlFor="rememberMe">Remember me</label>
                 </li>
                 <li>

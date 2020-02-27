@@ -3,7 +3,6 @@ import {Route, Redirect} from "react-router-dom";
 import ProfileContainer from "../../Profile/ProfileContainer";
 import News from "../../News/News";
 import Music from "../../Music/Music";
-import Login from "../../Login/Login";
 import Settings from "../../Settings/Settings";
 import css from "./Content.module.scss";
 import MessagesContainer from "../../Messages/MessagesContainer";

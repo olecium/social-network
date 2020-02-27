@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { authoriseLogin } from "../../redux/auth-reducer";
+import { userLogin } from "../../redux/auth-reducer";
 import Login from "./Login";
 
 class LoginContainer extends React.Component {
@@ -18,4 +18,4 @@ let mapStateToProps = (state) => {
         userId: state.auth.userId
     }
 }
-export default connect(mapStateToProps,{ authoriseLogin })(LoginContainer);
+export default connect(mapStateToProps,{ userLogin })(LoginContainer);

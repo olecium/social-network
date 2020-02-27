@@ -1,13 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import NavMain from "./NavMain";
-import { authoriseUser} from "./../../../redux/auth-reducer";
+import { userLogout} from "./../../../redux/auth-reducer";
 
 
 class NavMainContainer extends React.Component {
-    componentDidMount() {
-        this.props.authoriseUser();
-    }
+    
     render() {
         return <NavMain {...this.props} />
     }
@@ -20,4 +18,4 @@ let mapStateToProps = (state) => {
         userId: state.auth.userId
     }
 }
-export default connect(mapStateToProps,{ authoriseUser })(NavMainContainer);
+export default connect(mapStateToProps,{ userLogout })(NavMainContainer);

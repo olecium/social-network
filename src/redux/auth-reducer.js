@@ -1,4 +1,5 @@
 import { authAPI } from "./../api/api";
+import { stopSubmit } from "redux-form";
 
 // INITIAL STATE
 let initialState = {
@@ -8,7 +9,6 @@ let initialState = {
     isAuth: false
 };
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
-const SET_AUTH_LOGIN_DATA = 'SET_AUTH_LOGIN_DATA';
 
 // REDUCER
 const authReducer = (state = initialState, action) => {
@@ -17,18 +17,9 @@ const authReducer = (state = initialState, action) => {
         case SET_AUTH_USER_DATA: {
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
         }
-        case SET_AUTH_LOGIN_DATA: {
-            return {
-                ...state,
-                userId: action.userId,
-                isAuth: true
-            }
-        }
-
         default: 
             return state;
     }
@@ -37,28 +28,39 @@ const authReducer = (state = initialState, action) => {
 export default authReducer;
 
 // ACTION CREATORS
-export const setAuthUserData = (userId, email, login) => ({type: SET_AUTH_USER_DATA, data: {userId, email, login}});
-export const setAuthLoginData = (userId) => ({type: SET_AUTH_LOGIN_DATA, userId});
+export const setAuthUserData = (userId, email, login, isAuth) => (
+    {type: SET_AUTH_USER_DATA, payload: {userId, email, login, isAuth}
+});
 
 // THUNK
-export const authoriseUser = () => {
-    return ((dispatch) => {
-        authAPI.authMe().then(response => {
+export const getAuthUserData = () => (dispatch) => {
+    return authAPI.authMe()
+        .then(response => {
             if (response.data.resultCode === 0) {
                 let { id, email, login } = response.data.data;
-                dispatch(setAuthUserData(id, email, login));
+                const isAuth = true;
+                dispatch(setAuthUserData(id, email, login, isAuth));
             }
         });
-    })
 }
 
-export const authoriseLogin = (email, password, rememberMe) => {
-    return ((dispatch) => {
-        authAPI.authLogin(email, password, rememberMe).then(response => {
+export const userLogin = (email, password, rememberMe) => (dispatch) => {
+    authAPI.authLogin(email, password, rememberMe)
+        .then(response => {
             if (response.data.resultCode === 0) {
-                let userId = response.data.data.userId;
-                dispatch(setAuthLoginData(userId));
+                dispatch(getAuthUserData());
+            } else {
+                let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : "Common error";
+                let action = stopSubmit("login", {_error: errorMessage});
+                dispatch(action);
+            }
+        });
+}
+export const userLogout = () => (dispatch) => {
+    authAPI.authLogout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false));
             } 
         });
-    })
 }
