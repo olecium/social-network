@@ -217,10 +217,11 @@ export const setFollowProgress = (isFetching, userId) => ({type: FOLLOWING_IN_PR
 
 
 // THUNK FUNCTIONS
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (currentPage, pageSize) => {
     return((dispatch) => {
-        dispatch(setFetching(true));        
+        dispatch(setFetching(true));
         dispatch(setPage(currentPage));
+        
         usersAPI.getUsers(currentPage, pageSize).then(data => { 
             dispatch(loadUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));            
