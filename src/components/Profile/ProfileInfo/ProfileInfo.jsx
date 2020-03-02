@@ -4,11 +4,11 @@ import css from "./ProfileInfo.module.scss";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
-const ProfileInfo = (props) => {
-    if (!props.profile){
+const ProfileInfo = ({profile, aboutMe, status, updateStatus}) => {
+    if (!profile){
         return <Preloader/>
     }
-    let picture = props.profile.photos.small ? props.profile.photos.small : photo;
+    let picture = profile.photos.small ? profile.photos.small : photo;
 
     return (
         <>
@@ -18,11 +18,11 @@ const ProfileInfo = (props) => {
                     <img className={css.profile__picture_img} src={picture} alt="Profile pic ture"/>
                 </span>
                 <div className={css.profile__info}>
-                    <h2>{ props.profile.fullName}</h2>
+                    <h2>{ profile.fullName}</h2>
                     <p>Date of birth: 2 Jan</p>
                     <p>City: Minsk</p>
-                    <p>Interests: {props.aboutMe}</p>               
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+                    <p>Interests: {aboutMe}</p>               
+                    <ProfileStatus status={status} updateStatus={updateStatus} />
                 </div> 
             </section>
         </>

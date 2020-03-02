@@ -1,19 +1,54 @@
-.form_control{
-    textarea,
-    input{
-        border: 1px solid #aaaaaa;
-        border-radius: 5px;
-        padding: 5px;
+.formControl{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0 5px 0;
+
+    .formControl__label{
+        margin: 5px 0;
     }
-    
-    &.error{
+    .formControl__field{
         textarea,
         input{
-            border: 1px solid firebrick;
+            border: 1px solid #aaaaaa;
+            border-radius: 5px;
+            padding: 5px;
+            width: 200px;
+
+            &[type=checkbox]{
+                width: auto;
+            }
         }
-        p{
-            color: firebrick;
-            font-size: 12px;
+        
+        &.error{
+            textarea,
+            input{
+                border: 1px solid firebrick;
+            }
+            p{
+                color: firebrick;
+                font-size: 12px;
+            }
+        }
+    }
+
+    &.labelRight{
+        margin-top: 10px;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        
+        .formControl__label{
+            margin-left: 10px;
+            margin-top: 0;
+        }
+    }
+
+    &.labelLeft{
+        margin-top: 10px;
+        flex-direction: row;
+        
+        .formControl__label{
+            margin-right: 10px;
+            margin-top: 0;
         }
     }
 }

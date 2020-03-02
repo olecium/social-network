@@ -7,6 +7,9 @@ import Main from "./components/Main/Main/Main";
 import { connect } from "react-redux";
 import { initApp } from "./redux/app-reducer";
 import Preloader from './components/common/Preloader/Preloader';
+import {Provider} from "react-redux";
+import store from './redux/redux-store';
+import { compose } from 'redux';
 
 class App extends Component {
 
@@ -19,13 +22,11 @@ class App extends Component {
       return <Preloader />
     }
     return (
-        <BrowserRouter>
           <div className="container">
             <Header/>
             <Main/>
             <Footer/>
           </div>
-        </BrowserRouter>
     );
   }
 }
@@ -33,4 +34,21 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   init: state.app.init
 });
-export default connect(mapStateToProps,{ initApp })(App);
+
+const AppContainer = compose(
+  withRouter,
+  connect(mapStateToProps,{ initApp }))(App);
+
+
+const SocialNetworkApp = () => {
+    return  <Provider store={store}>
+              <BrowserRouter>
+                <AppContainer />
+              </BrowserRouter>
+            </Provider>
+}
+/*
+store.subscribe(() => { 
+  renderLayout(); 
+});*/
+export default SocialNetworkApp;
