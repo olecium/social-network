@@ -41,14 +41,11 @@ const AppContainer = compose(
 
 
 const SocialNetworkApp = () => {
-    return  <Provider store={store}>
-              <BrowserRouter>
+    return  <BrowserRouter>
+              <Provider store={store}>
                 <AppContainer />
-              </BrowserRouter>
-            </Provider>
+              </Provider>
+            </BrowserRouter>
 }
-/*
-store.subscribe(() => { 
-  renderLayout(); 
-});*/
+
 export default SocialNetworkApp;

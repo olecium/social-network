@@ -25,7 +25,7 @@ export const Input = ({input, meta: {touched, error}, ...props}) => {
         </div>
     )
 }
-export const CreateFieldWithLabel = (label, name, component, validators, props = {}, labelPosition) => {
+export const CreateFieldWithLabel = (label, name, component, validators = undefined, props = {}, labelPosition = null) => {
     let classNames = '';
     switch(labelPosition){
         case 'LEFT': classNames = `${css.labelLeft}`; break;
