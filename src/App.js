@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.scss';
 import Footer from './components/Footer/Footer';
-import {BrowserRouter, withRouter, HashRouter} from "react-router-dom";
+import {BrowserRouter, withRouter} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main/Main";
 import { connect } from "react-redux";
@@ -13,8 +13,18 @@ import { compose } from 'redux';
 
 class App extends Component {
 
+  catchAllUnhandledErrors = (reason, promise) => {
+    alert("some error occured");
+  }
+
   componentDidMount() {
     this.props.initApp();
+
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {    
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
 
   render() {
@@ -41,11 +51,11 @@ const AppContainer = compose(
 
 
 const SocialNetworkApp = () => {
-    return  <HashRouter>
+    return  <BrowserRouter>
               <Provider store={store}>
                 <AppContainer />
               </Provider>
-            </HashRouter>
+            </BrowserRouter>
 }
 
 export default SocialNetworkApp;

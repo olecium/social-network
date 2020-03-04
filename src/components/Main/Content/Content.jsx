@@ -28,6 +28,7 @@ const Content = () => {
                 </Switch>
             </Suspense>
             <Route path="/login" component={LoginContainer} />
+            <Route path="*" render={() => <div>404 Not Found</div>} />
         </section>
     );
 }
