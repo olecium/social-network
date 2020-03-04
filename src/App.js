@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.scss';
 import Footer from './components/Footer/Footer';
-import {BrowserRouter, withRouter} from "react-router-dom";
+import {BrowserRouter, withRouter, HashRouter} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main/Main";
 import { connect } from "react-redux";
@@ -41,11 +41,11 @@ const AppContainer = compose(
 
 
 const SocialNetworkApp = () => {
-    return  <BrowserRouter>
+    return  <HashRouter>
               <Provider store={store}>
                 <AppContainer />
               </Provider>
-            </BrowserRouter>
+            </HashRouter>
 }
 
 export default SocialNetworkApp;
