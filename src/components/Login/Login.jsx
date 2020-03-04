@@ -4,10 +4,10 @@ import { reduxForm } from "redux-form";
 import LoginForm from "./LoginForm";
 import { Redirect } from "react-router-dom";
 
-let Login = ({userLogin, isAuth}) => {
+let Login = ({userLogin, isAuth, captcha}) => {
     
     const onSubmit = (formData) => {
-        userLogin(formData.login, formData.password, formData.rememberMe);
+        userLogin(formData.login, formData.password, formData.rememberMe, formData.captcha);
     }
 
     if (isAuth) {
@@ -17,7 +17,7 @@ let Login = ({userLogin, isAuth}) => {
     return (    
         <section className={css.login}>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit} />
+            <LoginReduxForm onSubmit={onSubmit} captcha={captcha} />
         </section>
     )
 }

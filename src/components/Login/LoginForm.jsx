@@ -3,7 +3,9 @@ import { Input, CreateFieldWithLabel } from "../common/FormControls/FormControls
 import { required } from "../../utils/validators/validators";
 import css from "./Login.module.scss";
 
-const LoginForm = ({handleSubmit, error}) => {
+const LoginForm = ({handleSubmit, error, captcha}) => {
+    
+    console.log(captcha);
     return (
         <form onSubmit={handleSubmit}>
             <ul className={css.login_items}>
@@ -14,6 +16,14 @@ const LoginForm = ({handleSubmit, error}) => {
                 {CreateFieldWithLabel("Login", "login", Input, [required], {type:  "text"})}
                 {CreateFieldWithLabel("Password", "password", Input, [required], {type:  "password"})}
                 {CreateFieldWithLabel("Remember me", "rememberMe", Input, undefined, {type: "checkbox"}, "RIGHT")}
+                {
+                    captcha && 
+                    <img src={captcha} alt=""/>
+                }
+                {
+                    captcha && 
+                    CreateFieldWithLabel("Please enter security symbols", "captcha", Input, [required], {type:  "text"})
+                }
                 <li>
                     <button className={css.btn} type="submit">Log in</button>
                 </li>
